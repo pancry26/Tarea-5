@@ -1,1 +1,93 @@
+import java.util.Objects;
 
+public class Actividad4 {
+
+    static class Pila<E> {
+
+        private int tamanio;
+        private int superior;
+        private E[] elementos;
+
+        public Pila(int capacidad) {
+            tamanio = capacidad;
+            superior = -1;
+            elementos = (E[]) new Object[capacidad];
+        }
+
+        public void push(E elemento) {
+            if (superior < tamanio - 1) {
+                elementos[++superior] = elemento;
+            }
+        }
+
+        public boolean esIgual(Pila<E> otraPila) {
+
+            if (otraPila == null) {
+                return false;
+            }
+
+            if (this.superior != otraPila.superior) {
+                return false;
+            }
+
+            for (int i = 0; i <= superior; i++) {
+                if (!Objects.equals(this.elementos[i], otraPila.elementos[i])) {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
+        public void mostrar() {
+            for (int i = superior; i >= 0; i--) {
+                System.out.print(elementos[i] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Pila<Integer> pila1 = new Pila<>(5);
+        Pila<Integer> pila2 = new Pila<>(5);
+        Pila<Integer> pila3 = new Pila<>(5);
+
+        pila1.push(10);
+        pila1.push(20);
+        pila1.push(30);
+
+        pila2.push(10);
+        pila2.push(20);
+        pila2.push(30);
+
+        pila3.push(10);
+        pila3.push(20);
+        pila3.push(40);
+
+        System.out.println("Pila 1:");
+        pila1.mostrar();
+
+        System.out.println("Pila 2:");
+        pila2.mostrar();
+
+        System.out.println("Pila 3:");
+        pila3.mostrar();
+
+        System.out.println();
+        System.out.println("¿Pila 1 y Pila 2 son iguales?: " + pila1.esIgual(pila2));
+        System.out.println("¿Pila 1 y Pila 3 son iguales?: " + pila1.esIgual(pila3));
+
+        System.out.println();
+        System.out.println("Estado de las pilas despues de comparar:");
+
+        System.out.println("Pila 1:");
+        pila1.mostrar();
+
+        System.out.println("Pila 2:");
+        pila2.mostrar();
+
+        System.out.println("Pila 3:");
+        pila3.mostrar();
+    }
+}
