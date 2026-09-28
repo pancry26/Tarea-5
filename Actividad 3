@@ -1,1 +1,35 @@
+public class Actividad3 {
 
+    static class IgualGenerico {
+
+        public static <T> boolean esIgualA(T objeto1, T objeto2) {
+            return objeto1.equals(objeto2);
+        }
+    }
+
+    public static void main(String[] args) {
+
+        System.out.println("Integer:");
+        System.out.println(IgualGenerico.esIgualA(10, 10));
+
+        System.out.println("String:");
+        System.out.println(IgualGenerico.esIgualA("Hola", "Hola"));
+
+        System.out.println("Object:");
+        Object objeto1 = new Object();
+        Object objeto2 = objeto1;
+        System.out.println(IgualGenerico.esIgualA(objeto1, objeto2));
+
+        System.out.println("Tipos integrados:");
+        System.out.println(IgualGenerico.esIgualA(5.5, 5.5));
+
+        System.out.println("Comparacion con null:");
+        System.out.println(IgualGenerico.esIgualA("Hola", null));
+
+        try {
+            System.out.println(IgualGenerico.esIgualA(null, "Hola"));
+        } catch (NullPointerException e) {
+            System.out.println("Se produce NullPointerException porque el primer argumento es null.");
+        }
+    }
+}
