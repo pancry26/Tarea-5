@@ -1,1 +1,73 @@
+public class Ejercicio2 {
 
+    static class Par<F, S> {
+
+        private F primero;
+        private S segundo;
+
+        public Par(F primero, S segundo) {
+            this.primero = primero;
+            this.segundo = segundo;
+        }
+
+        public F getPrimero() {
+            return primero;
+        }
+
+        public S getSegundo() {
+            return segundo;
+        }
+
+        public boolean esIgual(Par<F, S> otro) {
+
+            boolean igualPrimero;
+
+            if (primero == null && otro.primero == null) {
+                igualPrimero = true;
+            } else if (primero == null || otro.primero == null) {
+                igualPrimero = false;
+            } else {
+                igualPrimero = primero.equals(otro.primero);
+            }
+
+            boolean igualSegundo;
+
+            if (segundo == null && otro.segundo == null) {
+                igualSegundo = true;
+            } else if (segundo == null || otro.segundo == null) {
+                igualSegundo = false;
+            } else {
+                igualSegundo = segundo.equals(otro.segundo);
+            }
+
+            return igualPrimero && igualSegundo;
+        }
+
+        @Override
+        public String toString() {
+            return "(" + primero + ", " + segundo + ")";
+        }
+    }
+
+    public static void main(String[] args) {
+
+        Par<String, Integer> par1 =
+                new Par<>("Juan", 20);
+
+        Par<String, Integer> par2 =
+                new Par<>("Juan", 20);
+
+        Par<String, Integer> par3 =
+                new Par<>("Pedro", 25);
+
+        System.out.println("Par 1: " + par1);
+        System.out.println("Par 2: " + par2);
+        System.out.println("Par 3: " + par3);
+
+        System.out.println("Par 1 y Par 2 son iguales: "
+                + par1.esIgual(par2));
+
+        System.out.println("Par 1 y Par 3 son iguales: "
+                + par1.esIgual(par3));
+    }
+}
